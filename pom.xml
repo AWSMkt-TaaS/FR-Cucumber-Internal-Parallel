@@ -1,0 +1,197 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>demo.web.test</groupId>
+  <artifactId>demo.web.test.fr.cucumber</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>demo.web.test.fr.cucumber</name>
+  <description>demo.web.test.fr.cucumber</description>
+  
+  <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+  </properties>
+   
+   <build>
+		<plugins>
+			<!-- Compiler plug-in -->
+			<plugin>
+				 <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.7.0</version>
+			</plugin>
+			<!-- Below plug-in is used to execute tests -->
+			<plugin>
+			  <groupId>com.github.temyers</groupId>
+			  <artifactId>cucumber-jvm-parallel-plugin</artifactId>
+			  <version>5.0.0</version>
+			  <executions>
+			    <execution>
+			      <id>generateRunners</id>
+			      <phase>generate-test-sources</phase>
+			      <goals>
+			        <goal>generateRunners</goal>
+			      </goals>
+			      <configuration>
+			          <!-- Mandatory -->
+			          <!-- comma separated list of package names to scan for glue code -->
+			         <glue>demo.web.test.fr</glue>
+			         <!-- These are the default values -->
+			          <!-- Where to output the generated tests -->
+			           <outputDirectory>${project.build.directory}/generated-test-sources/cucumber</outputDirectory>
+			           <!-- The diectory, which must be in the root of the runtime classpath, containing your feature files.  -->
+			          <featuresDirectory>src/test/resources/</featuresDirectory>
+			           <!-- Directory where the cucumber report files shall be written  -->
+			          <cucumberOutputDir>target/cucumber-parallel</cucumberOutputDir>
+			          <!-- comma separated list of output formats. For JUnit Rerun json,html,rerun are mandatory-->
+			         <format>json,html,rerun</format>
+			         <!-- CucumberOptions.strict property -->
+			         <strict>true</strict>
+			         <!-- CucumberOptions.monochrome property -->
+			         <monochrome>true</monochrome>
+			         <!-- The tags to run, maps to CucumberOptions.tags property -->
+			         <tags>@SPRINT100,@FUNCTIONAL</tags>
+			         <!-- If set to true, only feature files containing the required tags shall be generated. -->
+			         <!-- Excluded tags (~@notMe) are ignored. -->
+			         <filterFeaturesByTags>false</filterFeaturesByTags>
+			         <!-- Generate TestNG runners instead of JUnit ones. --> 
+			         <useTestNG>true</useTestNG>
+			         <!-- The naming scheme to use for the generated test classes.  One of 'simple' or 'feature-title' --> 
+			         <namingScheme>simple</namingScheme>
+			         <!-- The class naming pattern to use.  Only required/used if naming scheme is 'pattern'.-->
+			         <namingPattern>Parallel{c}IT</namingPattern>
+			         <parallelScheme>FEATURE</parallelScheme>
+			         <!-- Generate JUnitReRun runners instead of JUnit and TestNG single runner. --> 
+			         <useTestNGReRun>true</useTestNGReRun>
+			         <!-- It is meaningless to keep reruning without looking for root cause of the failure. Test case/features/scenarios won't pass magically so you can use max 5 rerun. -->
+			               <retryCount>10</retryCount>
+			      </configuration>
+			    </execution>
+			  </executions>
+			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-failsafe-plugin</artifactId>
+		        <version>2.19.1</version>
+		        <executions>
+		          <execution>
+		            <id>acceptance-test</id>
+		            <phase>integration-test</phase>
+		            <goals>
+		              <goal>integration-test</goal>
+		              <goal>verify</goal>
+		            </goals>
+		            <configuration>
+			         <forkCount>10</forkCount>
+			         <reuseForks>true</reuseForks>
+			         <includes>
+			             <include>**/*IT.class</include>
+			         </includes>
+			     </configuration>
+		          </execution>
+		        </executions>
+		    </plugin>
+		    
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-surefire-plugin</artifactId>
+			    <configuration>
+			         <forkCount>10</forkCount>
+			         <reuseForks>true</reuseForks>
+			         <includes>
+			             <include>**/*IT.class</include>
+			         </includes>
+			     </configuration>
+			    <version>2.20.1</version>
+			    <!-- <version>2.12</version>	 -->
+			    <!-- <version>2.20.1</version>	 -->			    
+			    <!--  create testng.xml configuration in "testng" folder and configure here asd-->	
+			   <!--  <configuration>
+	                  <suiteXmlFiles>
+	                     <suiteXmlFile>testng/testngconfig.xml</suiteXmlFile>
+	                  </suiteXmlFiles>
+	            </configuration> -->	
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+  		
+  		<!-- cucumber dependencies -->
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>cucumber-java</artifactId>
+		    <version>1.2.5</version>
+		</dependency>	
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>cucumber-core</artifactId>
+		    <version>1.2.5</version>
+		</dependency>			
+		<dependency>
+			<groupId>info.cukes</groupId>
+			<artifactId>cucumber-jvm</artifactId>
+			<version>1.2.5</version>
+			<type>pom</type>
+		</dependency>
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>cucumber-jvm-deps</artifactId>
+		    <version>1.0.5</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>cucumber-html</artifactId>
+		    <version>0.2.6</version>
+		</dependency>
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>gherkin</artifactId>
+		    <version>2.12.2</version>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>gherkin-jvm-deps</artifactId>
+		    <version>1.0.3</version>
+		</dependency>
+		<dependency>
+		    <groupId>info.cukes</groupId>
+		    <artifactId>cucumber-testng</artifactId>
+		    <version>1.2.5</version>
+		</dependency>
+		
+		<!-- selenium dependencies -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+		    <version>3.11.0</version>
+		</dependency>  
+		<dependency>  
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-server</artifactId>
+		    <version>3.11.0</version>
+		</dependency>  
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-firefox-driver</artifactId>
+		    <version>3.11.0</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.seleniumhq.selenium</groupId>
+		    <artifactId>selenium-opera-driver</artifactId>
+		    <version>3.11.0</version>
+		</dependency>
+		
+		
+		<!-- testng dependencies dd -->
+		<dependency>
+			<groupId>org.testng</groupId>
+		    <artifactId>testng</artifactId>
+		    <version>6.11</version>
+		    <scope>test</scope>
+		 </dependency>
+		
+	</dependencies>
+</project>
