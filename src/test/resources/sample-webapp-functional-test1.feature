@@ -21,7 +21,7 @@ Validate the result populated is as expected.
   @SMOKE
   Examples: 
     | targetbrowser | 
-    | ie            | 
+    | chrome        | 
 
     
 
