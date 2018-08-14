@@ -69,6 +69,10 @@ public class AppTestManager {
 		}
 		else if (this.getBrowser().equals("ie")) {
 			driver = new InternetExplorerDriver(RemoteWebDriverManager.getIEOptions());
+			Toolkit toolkit = Toolkit.getDefaultToolkit();
+			int Width = (int) toolkit.getScreenSize().getWidth();
+			int Height = (int)toolkit.getScreenSize().getHeight();
+			driver.manage().window().setSize(new Dimension(Width,Height));
 		}
 		else {
 			//if not specified then use chrome
