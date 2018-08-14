@@ -75,12 +75,12 @@ public class AppTestManager {
 			driver = new ChromeDriver(RemoteWebDriverManager.getChromeOptions());
 		}
 		
-		/*if (RemoteWebDriverManager.isWinOS()){
+		if (RemoteWebDriverManager.isWinOS()){
 			Toolkit toolkit = Toolkit.getDefaultToolkit();
 			int Width = (int) toolkit.getScreenSize().getWidth();
 			int Height = (int)toolkit.getScreenSize().getHeight();
 			driver.manage().window().setSize(new Dimension(Width,Height));
-		 }*/
+		 }
 	}
 	
 	public void navigateToTargetPage(String url)
