@@ -57,6 +57,7 @@ public class RemoteWebDriverManager {
 			 System.setProperty(DRIVERPATH_CHROME_PROPERTY_KEY, DRIVERPATH_CHROME_PROPERTY_VAL_WIN);
 		 }
 		 else{
+			 options.setHeadless(true);
 			 System.setProperty(DRIVERPATH_CHROME_PROPERTY_KEY, DRIVERPATH_CHROME_PROPERTY_VAL);
 		 }
 		 
@@ -68,6 +69,7 @@ public class RemoteWebDriverManager {
 			System.setProperty(DRIVERPATH_FIREFOX_PROPERTY_KEY, DRIVERPATH_FIREFOX_PROPERTY_VAL_WIN);
 		 }
 		 else{
+			options.setHeadless(true);
 			System.setProperty(DRIVERPATH_FIREFOX_PROPERTY_KEY, DRIVERPATH_FIREFOX_PROPERTY_VAL);
 		 }
 		 
