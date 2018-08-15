@@ -11,18 +11,30 @@ Validate the result populated is as expected.
       And Then I have entered "def" into the second text box
      When I press concatenate button
      Then the result should be "abcdef" on the third text box 
-  
-  @SMOKE @IE @CHROME
+      
+  @SMOKE 
   Examples: 
       | targetbrowser | 
       | ie            | 
-      | chrome        |
     
-  @SMOKE @CHROME @FIREFOX
+  @CROSSBROWSERHEADLESS
   Examples: 
     | targetbrowser | 
     | chrome        | 
     | firefox       |
+    
+  @SMOKEHEADLESS @CHROMEHEADLESS
+  Examples: 
+    | targetbrowser | 
+    | chrome        | 
+    
+  @FIREFOXEHEADLESS
+  Examples: 
+    | targetbrowser | 
+    | firefox       |
+    
+ 
+
 
     
 
