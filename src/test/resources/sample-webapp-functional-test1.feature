@@ -12,16 +12,17 @@ Validate the result populated is as expected.
      When I press concatenate button
      Then the result should be "abcdef" on the third text box 
   
-  @FUNCTIONAL
-    Examples: 
+  @SMOKE @IE @CHROME
+  Examples: 
       | targetbrowser | 
       | ie            | 
       | chrome        |
     
-  @SMOKE
+  @SMOKE @CHROME @FIREFOX
   Examples: 
     | targetbrowser | 
     | chrome        | 
+    | firefox       |
 
     
 
