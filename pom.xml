@@ -50,7 +50,7 @@
 			         <!-- CucumberOptions.monochrome property -->
 			         <monochrome>true</monochrome>
 			         <!-- The tags to run, maps to CucumberOptions.tags property -->
-			         <tags>@SPRINT100,@SMOKE</tags>
+			         <tags></tags>
 			         <!-- If set to true, only feature files containing the required tags shall be generated. -->
 			         <!-- Excluded tags (~@notMe) are ignored. -->
 			         <filterFeaturesByTags>false</filterFeaturesByTags>
@@ -82,7 +82,7 @@
 		              <goal>verify</goal>
 		            </goals>
 		            <configuration>
-			         <forkCount>10</forkCount>
+			         <forkCount>20</forkCount>
 			         <reuseForks>true</reuseForks>
 			         <includes>
 			             <include>**/*IT.class</include>
@@ -97,7 +97,7 @@
 			    <artifactId>maven-surefire-plugin</artifactId>
 			    <configuration>
 				 <argLine>-Xmx1024m -XX:MaxPermSize=256m</argLine>
-			         <forkCount>10</forkCount>
+			         <forkCount>20</forkCount>
 			         <reuseForks>true</reuseForks>
 			         <includes>
 			             <include>**/*IT.class</include>
